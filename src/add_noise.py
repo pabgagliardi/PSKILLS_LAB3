@@ -60,7 +60,7 @@ for snr in SNR_LEVELS:
     with open(TMP_MANIFEST, "w", encoding="utf-8") as f:
         for r in noisy_records:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
-    TMP_MANIFEST.rename(OUT_MANIFEST)
+    TMP_MANIFEST.replace(OUT_MANIFEST)
     print(f"  ✅ Manifest written to {OUT_MANIFEST}")
 
 print("\n✅ All noise levels done!")

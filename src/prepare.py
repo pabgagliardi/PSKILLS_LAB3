@@ -81,5 +81,5 @@ with open(TMP_MANIFEST, "w", encoding="utf-8") as f:
     for r in records:
         f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
-TMP_MANIFEST.rename(OUT_MANIFEST)
+TMP_MANIFEST.replace(OUT_MANIFEST)
 print(f"\n✅ Manifest written to {OUT_MANIFEST}")

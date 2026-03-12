@@ -1,9 +1,11 @@
 import json
 import subprocess
 from pathlib import Path
+import yaml
+with open("params.yaml") as f:
+    params = yaml.safe_load(f)
 
-# --- Config ---
-LANG = "fr"
+LANG = params["lang"]
 IN_MANIFEST = Path(f"data/manifests/{LANG}/clean.jsonl")
 OUT_MANIFEST = Path(f"data/manifests/{LANG}/phonemized.jsonl")
 TMP_MANIFEST = OUT_MANIFEST.with_suffix(".jsonl.tmp")
@@ -45,5 +47,5 @@ with open(TMP_MANIFEST, "w", encoding="utf-8") as f:
     for r in records:
         f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
-TMP_MANIFEST.rename(OUT_MANIFEST)
+TMP_MANIFEST.replace(OUT_MANIFEST)
 print(f"\n✅ Manifest written to {OUT_MANIFEST}")

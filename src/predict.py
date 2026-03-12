@@ -64,7 +64,7 @@ for snr in SNR_LEVELS:
     with open(TMP_MANIFEST, "w", encoding="utf-8") as f:
         for r in predicted_records:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
-    TMP_MANIFEST.rename(OUT_MANIFEST)
+    TMP_MANIFEST.replace(OUT_MANIFEST)
     print(f"  ✅ Predictions written to {OUT_MANIFEST}")
 
 print("\n✅ All predictions done!")

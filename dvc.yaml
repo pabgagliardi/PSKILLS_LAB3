@@ -8,67 +8,67 @@ stages:
       - lang_mls
       - n_samples
     outs:
-      - data/manifests/fr/clean.jsonl
+      - data/manifests/es/clean.jsonl
 
   phonemize:
     cmd: python src/phonemize.py
     deps:
       - src/phonemize.py
-      - data/manifests/fr/clean.jsonl
+      - data/manifests/es/clean.jsonl
     params:
       - lang
     outs:
-      - data/manifests/fr/phonemized.jsonl
+      - data/manifests/es/phonemized.jsonl
 
   add_noise:
     cmd: python src/add_noise.py
     deps:
       - src/add_noise.py
-      - data/manifests/fr/phonemized.jsonl
+      - data/manifests/es/phonemized.jsonl
     params:
       - lang
       - snr_levels
     outs:
-      - data/manifests/fr/noisy_snr0.jsonl
-      - data/manifests/fr/noisy_snr5.jsonl
-      - data/manifests/fr/noisy_snr10.jsonl
-      - data/manifests/fr/noisy_snr15.jsonl
-      - data/manifests/fr/noisy_snr20.jsonl
-      - data/manifests/fr/noisy_snr25.jsonl
-      - data/manifests/fr/noisy_snr30.jsonl
-      - data/manifests/fr/noisy_snr35.jsonl
-      - data/manifests/fr/noisy_snr40.jsonl
-      - data/manifests/fr/noisy_snr45.jsonl
+      - data/manifests/es/noisy_snr0.jsonl
+      - data/manifests/es/noisy_snr5.jsonl
+      - data/manifests/es/noisy_snr10.jsonl
+      - data/manifests/es/noisy_snr15.jsonl
+      - data/manifests/es/noisy_snr20.jsonl
+      - data/manifests/es/noisy_snr25.jsonl
+      - data/manifests/es/noisy_snr30.jsonl
+      - data/manifests/es/noisy_snr35.jsonl
+      - data/manifests/es/noisy_snr40.jsonl
+      - data/manifests/es/noisy_snr45.jsonl
 
   predict:
     cmd: python src/predict.py
     deps:
       - src/predict.py
-      - data/manifests/fr/noisy_snr0.jsonl
+      - data/manifests/es/noisy_snr0.jsonl
     params:
       - lang
       - model_id
     outs:
-      - data/manifests/fr/predictions_snr0.jsonl
-      - data/manifests/fr/predictions_snr5.jsonl
-      - data/manifests/fr/predictions_snr10.jsonl
-      - data/manifests/fr/predictions_snr15.jsonl
-      - data/manifests/fr/predictions_snr20.jsonl
-      - data/manifests/fr/predictions_snr25.jsonl
-      - data/manifests/fr/predictions_snr30.jsonl
-      - data/manifests/fr/predictions_snr35.jsonl
-      - data/manifests/fr/predictions_snr40.jsonl
-      - data/manifests/fr/predictions_snr45.jsonl
+      - data/manifests/es/predictions_snr0.jsonl
+      - data/manifests/es/predictions_snr5.jsonl
+      - data/manifests/es/predictions_snr10.jsonl
+      - data/manifests/es/predictions_snr15.jsonl
+      - data/manifests/es/predictions_snr20.jsonl
+      - data/manifests/es/predictions_snr25.jsonl
+      - data/manifests/es/predictions_snr30.jsonl
+      - data/manifests/es/predictions_snr35.jsonl
+      - data/manifests/es/predictions_snr40.jsonl
+      - data/manifests/es/predictions_snr45.jsonl
 
   evaluate:
     cmd: python src/evaluate.py
     deps:
       - src/evaluate.py
-      - data/manifests/fr/predictions_snr0.jsonl
+      - data/manifests/es/predictions_snr0.jsonl
     params:
       - lang
       - snr_levels
     metrics:
-      - results/per_fr.json
+      - results/per_es.json
     plots:
-      - results/per_vs_snr_fr.png
+      - results/per_vs_snr_all.png
