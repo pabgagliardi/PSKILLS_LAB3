@@ -4,9 +4,12 @@ import soundfile as sf
 from pathlib import Path
 
 # --- Config ---
-LANG = "fr"
+import yaml
+with open("params.yaml") as f:
+    params = yaml.safe_load(f)
+LANG = params["lang"]
+SNR_LEVELS = params["snr_levels"]
 IN_MANIFEST = Path(f"data/manifests/{LANG}/phonemized.jsonl")
-SNR_LEVELS = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45]  # dB
 
 # --- Noise functions (provided in lab PDF) ---
 def add_noise(signal: np.ndarray, snr_db: float, rng: np.random.Generator) -> np.ndarray:

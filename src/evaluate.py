@@ -4,8 +4,12 @@ from pathlib import Path
 from jiwer import cer  # CER == PER when each phoneme is one character
 
 # --- Config ---
-LANG = "fr"
-SNR_LEVELS = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45]
+import yaml
+with open("params.yaml") as f:
+    params = yaml.safe_load(f)
+LANG = params["lang"]
+SNR_LEVELS = params["snr_levels"]
+
 OUT_DIR = Path("results")
 OUT_DIR.mkdir(exist_ok=True)
 

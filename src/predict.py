@@ -9,9 +9,12 @@ from phonemizer.backend import EspeakBackend
 EspeakBackend.set_library("C:\\Program Files\\eSpeak NG\\libespeak-ng.dll")
 
 # --- Config ---
-LANG = "fr"
-MODEL_ID = "facebook/wav2vec2-lv-60-espeak-cv-ft"
-SNR_LEVELS = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45]
+import yaml
+with open("params.yaml") as f:
+    params = yaml.safe_load(f)
+LANG = params["lang"]
+MODEL_ID = params["model_id"]
+SNR_LEVELS = params["snr_levels"]
 
 # --- Load model (only once) ---
 print(f"Loading model {MODEL_ID}...")

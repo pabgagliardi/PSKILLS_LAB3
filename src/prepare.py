@@ -5,11 +5,14 @@ import soundfile as sf
 import numpy as np
 from datasets import load_dataset, Audio
 from pathlib import Path
+import yaml
+with open("params.yaml") as f:
+    params = yaml.safe_load(f)
 
 # --- Config ---
-LANG = "fr"
-LANG_MLS = "french"
-N_SAMPLES = 50
+LANG = params["lang"]
+LANG_MLS = params["lang_mls"]
+N_SAMPLES = params["n_samples"]
 OUT_WAV_DIR = Path(f"data/raw/{LANG}/wav")
 OUT_MANIFEST = Path(f"data/manifests/{LANG}/clean.jsonl")
 TMP_MANIFEST = OUT_MANIFEST.with_suffix(".jsonl.tmp")
