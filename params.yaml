@@ -1,5 +1,5 @@
-lang: "fr"
-lang_mls: "french"
+lang: "es"
+lang_mls: "spanish"
 n_samples: 50
 snr_levels: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45]
 model_id: "facebook/wav2vec2-lv-60-espeak-cv-ft"
